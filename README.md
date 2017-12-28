@@ -13,8 +13,9 @@ Use the motion sensor on the phone and track the accelerameter data to control t
 A user could draw on the phone, and the arm will follow the trace to move. Two options are supported, realtime fllowing, or move the arm 
 at the end of drawing. 
 
-## Car
-Hardware: [YIKESHU-Chassis](https://www.amazon.com/YIKESHU-Chassis-Encoder-Arduino-Wheels/dp/B075LD4FPN/ref=sr_1_1?ie=UTF8&qid=1514247571&sr=8-1&keywords=YIKESHU-Chassis)
+## Chassis
+Hardware: [YIKESHU-Chassis](https://www.amazon.com/YIKESHU-Chassis-Encoder-Arduino-Wheels/dp/B075LD4FPN/ref=sr_1_1?ie=UTF8&qid=1514247571&sr=8-1&keywords=YIKESHU-Chassis)<p>
+Control the direction and spped of the chassis.
 
 ## License
 pibot-android is released under the Apache License Version 2.0.  See [Apache](http://www.apache.org/licenses/LICENSE-2.0)

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <GridLayout
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:background="@layout/round_view">
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_up"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@layout/round_button"
+            android:text="U"
+            android:textSize="14dp" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_left"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@layout/round_button"
+            android:text="L"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@layout/round_button"
+            android:text="S"
+            android:textSize="14dp" />
+        <Button
+            android:id="@+id/btn_right"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@layout/round_button"
+            android:text="R"
+            android:textSize="14dp" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+        <Button
+            android:id="@+id/btn_down"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@layout/round_button"
+            android:text="B"
+            android:textSize="14dp" />
+    </GridLayout>
+
+    <SeekBar
+        android:id="@+id/seek_speed"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="0dp"
+        android:progress="50"
+        android:text="speed" />
+
+</LinearLayout>

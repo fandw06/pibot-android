@@ -6,14 +6,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.dawei.picontrol.fragment.DrawingArmControl;
 import com.dawei.picontrol.module.Arm;
 
 import java.io.File;
@@ -41,18 +40,18 @@ public class DrawingView extends View implements View.OnClickListener {
     private float mLastX;
     private float mLastY;
 
-    private static final float THR = 0.5f;
-
     private Stack<Trail> trails;
     private Stack<Trail> erasedTrails;
 
-    private ControlActivity hostActivity;
+    private DrawingArmControl host;
 
-    class Trail {
-        Paint paint;
-        Path path;
+    private boolean penUp;
 
-        Trail(Paint paint, Path path) {
+    public class Trail {
+        public Paint paint;
+        public Path path;
+
+        public Trail(Paint paint, Path path) {
             this.paint = paint;
             this.path = path;
         }
@@ -76,8 +75,8 @@ public class DrawingView extends View implements View.OnClickListener {
         erasedTrails = new Stack<>();
     }
 
-    public void setHostActivity(ControlActivity c) {
-        this.hostActivity = c;
+    public void setHost(DrawingArmControl f) {
+        this.host = f;
     }
 
     @Override
@@ -86,7 +85,7 @@ public class DrawingView extends View implements View.OnClickListener {
         // With regarding to bitmap.
         float currentX = event.getX() - LEFT_TOP_X;
         float currentY = event.getY() - LEFT_TOP_Y;
-        if (!hostActivity.enabledDrawing)
+        if (!host.isEnabled())
             return true;
         switch (a) {
             case MotionEvent.ACTION_DOWN:
@@ -102,9 +101,8 @@ public class DrawingView extends View implements View.OnClickListener {
                     Log.d(TAG, "Thread: " + Thread.currentThread().getName());
                     Log.d(TAG, String.format("Moving... from (%f, %f) to (%f, %f).", mLastX, mLastY, currentX, currentY));
                     mPath.quadTo(mLastX, mLastY, currentX, currentY);
-                    if (hostActivity.isDrawing) {
-                        hostActivity.getArm()
-                                .setPosition(hostActivity.transferX(currentX), hostActivity.transferY(currentY), Arm.DRAW_Z);
+                    if (host.isDrawing) {
+                        host.arm.setPosition(host.arm.transferX(currentX), host.arm.transferY(currentY), Arm.DRAW_Z);
                     }
                     mCanvas.drawPath(mPath, mPaint);
                     invalidate();
@@ -115,6 +113,10 @@ public class DrawingView extends View implements View.OnClickListener {
             case MotionEvent.ACTION_UP:
                 saveTrail();
                 Log.d(TAG, "Action finished at " + currentX + " ," + currentY);
+                if (host.isDrawing) {
+                    host.arm.setLeft(0);
+                }
+                break;
 
         }
         return true;
@@ -232,11 +234,11 @@ public class DrawingView extends View implements View.OnClickListener {
         return this.trails;
     }
 
-    public int getImgWidth() {
+    public static int getImgWidth() {
         return IMG_WIDTH;
     }
 
-    public int getImgHeight() {
+    public static int getImgHeight() {
         return IMG_HEIGHT;
     }
 }

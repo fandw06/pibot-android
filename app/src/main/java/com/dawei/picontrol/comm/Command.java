@@ -1,9 +1,5 @@
 package com.dawei.picontrol.comm;
 
-/**
- * Created by Dawei on 12/20/2017.
- */
-
 public class Command {
 
     public enum Type {
@@ -23,7 +19,7 @@ public class Command {
 
     public enum Module {
         ARM(0x10),
-        ENGINE(0x11),
+        CHASSIS(0x11),
         ULTRASONIC(0x12),
         LED(0x1e),
         GPIO(0x20);
@@ -59,8 +55,7 @@ public class Command {
         SLOW_DOWN(0x04),
         TURN_L(0x05),
         TURN_R(0x06),
-        GO_F(0x07),
-        GO_B(0x08),
+        SET_SPEED(0x07),
 
         //ultrasonic
         GET_DIST(0x00),
@@ -117,7 +112,7 @@ public class Command {
         private Option option;
         private float[] params;
 
-        public Builder() {}
+        Builder() {}
 
         public Builder type(Type t) {
             this.type = t;

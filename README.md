@@ -1,6 +1,6 @@
 # pibot-android
 An Android app to control my pibot.</p>
-<img src="https://github.com/fandw06/pibot-android/blob/master/res/picontrol-1225.png" width="40%">
+<img src="https://github.com/fandw06/pibot-android/blob/master/res/picontrol-1227.png" width="40%">
 ## Arm
 Hardware: [ArmUno 2.0](http://microbotlabs.com/armuno-2.0-desktop-robotic-arm-kit.html)
 ### Seekbar control
